@@ -12,6 +12,17 @@ from base import response
 
 logger = logging.getLogger("appLogs")
 
+GENRE_TYPES = {
+    1: "Science",
+    2: "Fantasy",
+    3: "Romance",
+    4: "History",
+    5: "Poetry",
+    6: "Biography",
+    7: "Drama",
+    8: "Travel",
+    9: "Mystery"
+}
 
 class AuthorBookCountView(APIView):
 
@@ -196,3 +207,49 @@ class GenreAvgBookCountView(APIView):
             return response.BadRequest({
                     "msg": "unable to get avg count across genre."
                 })
+        
+
+class BookRatingView(APIView):
+
+    def get(self, request):
+        try:
+            rating = request.query_params.get('rating')
+
+            # if rating is not provided taking default as 5
+            if not rating:
+                rating = 5
+
+            books = list(Book.objects.annotate(author_name=F('author__name')).filter(rating__gte=rating).values(
+                'title', 'author_name', 'isbn', 'publication_date', 'genre', 'quantity_in_stock', 'rating'
+            ))
+            return response.Ok(books)
+        except Exception as e:
+            logger.error(f"[BookRatingView] exception occurred - {str(e)}")
+            return response.BadRequest({
+                "msg": "unable to get books for given rating."
+            })
+
+
+def home(request):
+    return render(request, "base.html")
+
+
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, "book_list.html", {'books': books})
+
+
+def author_list(request):
+    authors = Author.objects.all()
+    return render(request, "author_list.html", {'authors': authors})
+
+
+def book_detail(request, book_id):
+    book = Book.objects.get(pk=book_id)
+    book.genre_name = GENRE_TYPES.get(book.genre, "")
+    return render(request, 'book_detail.html', {'book': book})
+
+
+def author_detail(request, author_id):
+    author = Author.objects.get(pk=author_id)
+    return render(request, 'author_detail.html', {'author': author})

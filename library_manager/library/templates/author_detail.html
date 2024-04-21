@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <hr></hr>   
+    <h2>{{ author.name }}</h2>
+    {% if author.biography %}
+        <p><strong>Biography:</strong> <a href="{% url 'book_detail' author.biography.pk %}">{{ author.biography.title }}</a></p>
+    {% else %}
+    <p>No biography found</p>
+    {% endif %}
+{% endblock %}

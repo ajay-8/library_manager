@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Manager</title>
+</head>
+<body>
+    <header>
+        <h1>Library Manager</h1>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <ul>
+                <li><a href="{% url 'book_list' %}">Books</a></li>
+                <li><a href="{% url 'author_list' %}">Authors</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
