@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-APPS = ["rest_framework", "corsheaders"]
+APPS = ["base", "library", "rest_framework", "corsheaders"]
 
 INSTALLED_APPS = INSTALLED_APPS + APPS
 
