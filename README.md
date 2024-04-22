@@ -5,9 +5,9 @@ This is a simple library manager application developed using Django and Django R
 ## Installation
 
 1. make a folder named library
-    '''
+    ```bash
         sudo mkdir library
-    '''
+    ```
 
 2. Create a virtual environment (optional but recommended):
 
@@ -29,19 +29,20 @@ python3.10 -m venv myenv
 2. Clone the repository:
 
 ```bash
-git clone https://github.com/ajay-8/library_manager.git
-cd library_manager/library_manager
-touch .env
-Paste the below content in file
-    '''
+    git clone https://github.com/ajay-8/library_manager.git
+    cd library_manager/library_manager
+    touch .env
+```
+    Paste the below content in file
+    ```bash
         DB_NAME=postgres
         DB_USER=postgres
         DB_PASSWORD=postgres
         DB_HOST=db
         DB_PORT=5432
-    '''
+    ```
     Replace db creds according to your need.
-```
+
 
 4. Install the required dependencies:
 
@@ -70,9 +71,9 @@ python manage.py runserver
 ```
 ## OR RUN 
 
-'''
+```bash
     sudo docker-compose -f docker-compose.yml up --build -d
-'''
+```
 
 Open a web browser and navigate to http://127.0.0.1:8000/admin to access the Django admin interface.
 
