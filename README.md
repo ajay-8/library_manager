@@ -33,15 +33,16 @@ python3.10 -m venv myenv
     cd library_manager/library_manager
     touch .env
 ```
-    Paste the below content in file
-    ```bash
-        DB_NAME=postgres
-        DB_USER=postgres
-        DB_PASSWORD=postgres
-        DB_HOST=db
-        DB_PORT=5432
-    ```
-    Replace db creds according to your need.
+Paste the below content in file
+
+```bash
+    DB_NAME=postgres
+    DB_USER=postgres
+    DB_PASSWORD=postgres
+    DB_HOST=db
+    DB_PORT=5432
+```
+Replace db creds according to your need.
 
 
 4. Install the required dependencies:
